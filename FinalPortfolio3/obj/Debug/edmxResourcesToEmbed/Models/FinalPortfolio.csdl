@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="FinalPortfolio2Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Description">
+    <Key>
+      <PropertyRef Name="ProjectDescriptionID" />
+    </Key>
+    <Property Name="ScreenshotID" Type="Int32" Nullable="false" />
+    <Property Name="ProjectDescriptionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProjectDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Screenshot" Relationship="FinalPortfolio2Model.FK_Descriptions_Screenshots" FromRole="Description" ToRole="Screenshot" />
+  </EntityType>
+  <EntityType Name="Project">
+    <Key>
+      <PropertyRef Name="ProjectID" />
+    </Key>
+    <Property Name="ProjectID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProjectName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="GitHubLink" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Screenshots" Relationship="FinalPortfolio2Model.FK_Screenshots_Projects" FromRole="Project" ToRole="Screenshot" />
+  </EntityType>
+  <EntityType Name="Screenshot">
+    <Key>
+      <PropertyRef Name="ScreenshotID" />
+    </Key>
+    <Property Name="ScreenshotID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProjectID" Type="Int32" Nullable="false" />
+    <Property Name="Screenshot1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Descriptions" Relationship="FinalPortfolio2Model.FK_Descriptions_Screenshots" FromRole="Screenshot" ToRole="Description" />
+    <NavigationProperty Name="Project" Relationship="FinalPortfolio2Model.FK_Screenshots_Projects" FromRole="Screenshot" ToRole="Project" />
+  </EntityType>
+  <EntityContainer Name="FinalPortfolio2Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Descriptions" EntityType="Self.Description" />
+    <EntitySet Name="Projects" EntityType="Self.Project" />
+    <EntitySet Name="Screenshots" EntityType="Self.Screenshot" />
+    <AssociationSet Name="FK_Descriptions_Screenshots" Association="FinalPortfolio2Model.FK_Descriptions_Screenshots">
+      <End Role="Screenshot" EntitySet="Screenshots" />
+      <End Role="Description" EntitySet="Descriptions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Screenshots_Projects" Association="FinalPortfolio2Model.FK_Screenshots_Projects">
+      <End Role="Project" EntitySet="Projects" />
+      <End Role="Screenshot" EntitySet="Screenshots" />
+    </AssociationSet>
+  </EntityContainer>
+  <Association Name="FK_Descriptions_Screenshots">
+    <End Type="FinalPortfolio2Model.Screenshot" Role="Screenshot" Multiplicity="1" />
+    <End Type="FinalPortfolio2Model.Description" Role="Description" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Screenshot">
+        <PropertyRef Name="ScreenshotID" />
+      </Principal>
+      <Dependent Role="Description">
+        <PropertyRef Name="ScreenshotID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Screenshots_Projects">
+    <End Type="FinalPortfolio2Model.Project" Role="Project" Multiplicity="1" />
+    <End Type="FinalPortfolio2Model.Screenshot" Role="Screenshot" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Project">
+        <PropertyRef Name="ProjectID" />
+      </Principal>
+      <Dependent Role="Screenshot">
+        <PropertyRef Name="ProjectID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

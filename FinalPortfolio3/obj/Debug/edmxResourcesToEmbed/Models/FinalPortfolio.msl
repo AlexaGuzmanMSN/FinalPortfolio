@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="FinalPortfolio2ModelStoreContainer" CdmEntityContainer="FinalPortfolio2Entities">
+    <EntitySetMapping Name="Descriptions">
+      <EntityTypeMapping TypeName="FinalPortfolio2Model.Description">
+        <MappingFragment StoreEntitySet="Descriptions">
+          <ScalarProperty Name="ScreenshotID" ColumnName="ScreenshotID" />
+          <ScalarProperty Name="ProjectDescriptionID" ColumnName="ProjectDescriptionID" />
+          <ScalarProperty Name="ProjectDescription" ColumnName="ProjectDescription" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Projects">
+      <EntityTypeMapping TypeName="FinalPortfolio2Model.Project">
+        <MappingFragment StoreEntitySet="Projects">
+          <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
+          <ScalarProperty Name="ProjectName" ColumnName="ProjectName" />
+          <ScalarProperty Name="GitHubLink" ColumnName="GitHubLink" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Screenshots">
+      <EntityTypeMapping TypeName="FinalPortfolio2Model.Screenshot">
+        <MappingFragment StoreEntitySet="Screenshots">
+          <ScalarProperty Name="ScreenshotID" ColumnName="ScreenshotID" />
+          <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
+          <ScalarProperty Name="Screenshot1" ColumnName="Screenshot" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

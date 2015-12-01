@@ -1,0 +1,29 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h1></h1>
+    <p class="lead">Alexa's Web Page</p>
+     
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <h2>@Html.ActionLink("Projects", "Index", "Projects")</h2>
+        <p>
+            See a list of Alexa's Projects.
+        </p>
+        
+    </div>
+    <div class="col-md-4">
+        <h2>@Html.ActionLink("Project Descriptions", "Index", "Descriptions")</h2>
+        <p>Find out what Alexa's Projects will do.</p>
+        
+    </div>
+    <div class="col-md-4">
+        <h2>@Html.ActionLink("Screenshots", "Index", "Screenshots")</h2>
+        <p>Take a look inside of Alexa's Projects.</p>
+        
+    </div>
+</div>
